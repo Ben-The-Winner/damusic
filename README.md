@@ -1,7 +1,7 @@
 # damusic
 
 
-## First time use:
+## First time use: ##
 pip install virtualenv # install first
 cd projectfolder # go to project folder
 python -m venv ./venv # Create a virtual environment named venv
