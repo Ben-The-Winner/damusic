@@ -1,6 +1,11 @@
 # Beat tracking example
 
 import librosa
+from tkinter import *
+
+root = Tk()
+root.geometry("400x400")
+
 # import numpy as np
 # import matplotlib.pyplot as plt
 # import librosa.display
@@ -16,17 +21,50 @@ y, sr = librosa.load(filename)
 
 # 3. Extract the notes 
 notes = librosa.midi_to_note(range(0,22), key='F:min')
-print('original note: ', notes)
+words = notes
 
 # 4. Rearrange them with an algo from songify.py
 notes = songify(notes)
-print('shuffled notes: ', notes)
+words2 = notes
 
 # 5. Run the default beat tracker
 tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
-print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
+words3 = tempo
 
-# 4. Convert the frame indices of beat events into timestamps
+# 6. Convert the frame indices of beat events into timestamps
 beat_times = librosa.frames_to_time(beat_frames, sr=sr)
+
+
+
+def Click():
+    myLabel = Label(root, text = words)
+    myLabel.pack()
+
+def Click2():
+    myLabel2 = Label(root, text = words2)
+    myLabel2.pack()
+
+
+
+def Click3():
+    myLabel3 = Label(root, text = words3)
+    myLabel3.pack()
+
+
+
+myButton= Button(root, text= "click here to see the original notes", command= Click, bg="yellow")
+myButton.pack()
+
+myButton2= Button(root, text= "click here to see the shuffled notes", command= Click2, bg="green")
+myButton2.pack()
+
+
+myButton3= Button(root, text= "click here to see the tempo", command= Click3, bg="red")
+myButton3.pack()
+
+root.configure(background="#f0ff33")
+
+
+root.mainloop()
 
 
